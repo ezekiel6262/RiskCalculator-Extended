@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import CorrelationHeatmap from './CorrelationHeatmap'
 
 const STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Bebas+Neue&display=swap');
@@ -740,11 +741,12 @@ export default function Tools() {
           <div className="nav-tabs">
             <button className={`nav-tab ${tab === 'risk' ? 'active' : ''}`} onClick={() => setTab('risk')}>Risk Calculator</button>
             <button className={`nav-tab ${tab === 'whale' ? 'active' : ''}`} onClick={() => setTab('whale')}>Whale Monitor</button>
+            <button className={`nav-tab ${tab === 'correlation' ? 'active' : ''}`} onClick={() => setTab('correlation')}>Correlation Heatmap</button>
           </div>
           <div className="nav-badge">Starknet · USDC</div>
         </nav>
         <div className="page">
-          {tab === 'risk' ? <RiskCalculator /> : <WhaleMonitor />}
+          {tab === 'risk' ? <RiskCalculator /> : tab === 'whale' ? <WhaleMonitor /> : <CorrelationHeatmap />}
           <div className="page-footer">
             Extended Protocol · Starknet zk-chain · USDC settled · Built by ex-Revolut team · For informational use only
           </div>
